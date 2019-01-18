@@ -1,25 +1,21 @@
 <html>
-<head>
-    <!--<title>Getting Started: Serving Web Content</title>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>-->
-</head>
+
 <body>
 <div>
-    <from method="post">
+    <form method="post">
         <input type="text" name="sender" placeholder="Введите номер карты отправителя"/>
         <input type="text" name="recipient" placeholder="Введите номер карты получателя"/>
         <input type="text" name="amount" placeholder="Введите сумму"/>
-        <button type="submit">Перевести</button>
-    </from>
-
+        <button type="submit">Выполнить</button>
+    </form>
 </div>
 <div>Список переводов</div>
 {{#transactions}}
     <div>
         <b>{{id}}</b>
-        <span>{{sender}}</span>
-        <i>{{recipient}}</i>
-        <i>{{amount}}</i>
+        <b>{{sender}}</b>
+        <b>{{recipient}}</b>
+        <b>{{amount}}</b>
     </div>
 {{/transactions}}
 </body>
