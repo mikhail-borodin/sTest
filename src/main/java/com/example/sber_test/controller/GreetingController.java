@@ -1,6 +1,6 @@
-package com.example.sber_test;
+package com.example.sber_test.controller;
 
-import com.example.sber_test.domain.Transaction;
+import com.example.sber_test.model.Transaction;
 import com.example.sber_test.repository.TransactionRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;

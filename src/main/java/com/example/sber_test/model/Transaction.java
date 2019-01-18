@@ -1,4 +1,4 @@
-package com.example.sber_test.domain;
+package com.example.sber_test.model;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
