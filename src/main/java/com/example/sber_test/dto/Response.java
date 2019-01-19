@@ -1,4 +1,5 @@
-package com.example.sber_test.domain;
+package com.example.sber_test.dto;
+
 
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty;
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlRootElement;
@@ -7,7 +8,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-@JacksonXmlRootElement(localName = "response")
+@JacksonXmlRootElement(localName = "Response")
 public class Response implements Serializable {
     private static final long serialVersionUID = 14L;
 

@@ -3,13 +3,15 @@
 <body>
 <div>
     <form method="post">
-        <input type="text" name="sender" placeholder="Введите номер карты отправителя"/>
-        <input type="text" name="recipient" placeholder="Введите номер карты получателя"/>
-        <input type="text" name="amount" placeholder="Введите сумму"/>
-        <button type="submit">Выполнить</button>
+        <input type="text" name="sender" placeholder="Введите номер карты отправителя"/><br>
+        <input type="text" name="recipient" placeholder="Введите номер карты получателя"/><br>
+        <input type="text" name="amount" placeholder="Введите сумму"/><br>
+        <button type="submit">Выполнить</button><br>
     </form>
 </div>
 <div>Список переводов</div>
+<table>
+
 {{#transactions}}
     <div>
         <b>{{id}}</b>

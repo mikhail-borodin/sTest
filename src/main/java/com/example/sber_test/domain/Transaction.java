@@ -1,43 +1,20 @@
 package com.example.sber_test.domain;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty;
-import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlRootElement;
-
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.validation.constraints.*;
-import java.io.Serializable;
 
 @Entity
-@JacksonXmlRootElement(localName = "transaction")
-public class Transaction implements Serializable {
-
-    private static final long serialVersionUID = 11L;
-
+public class Transaction {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @JsonIgnore
     private Integer id;
 
-    @JacksonXmlProperty
-    @NotNull
-    @Pattern(regexp = "^[0-9]+$", message = "must contain only digits")
-    @Size(min = 5, max = 25)
     private String sender;
 
-    @JacksonXmlProperty
-    @NotNull
-    @Pattern(regexp = "^[0-9]+$")
-    @Size(min = 5, max = 25)
     private String recipient;
 
-    @JacksonXmlProperty
-    @NotNull
-    @Min(value = 0)
-    @Max(value = 300000)
     private Double amount;
 
     public Transaction() {

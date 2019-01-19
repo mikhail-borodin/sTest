@@ -1,4 +1,4 @@
-package com.example.sber_test.domain;
+package com.example.sber_test.dto;
 
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty;
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlRootElement;
@@ -17,5 +17,12 @@ public class Request implements Serializable {
 
     public void setContent(String content) {
         this.content = content;
+    }
+
+    @Override
+    public String toString() {
+        return "Request{" +
+                "content='" + content + '\'' +
+                '}';
     }
 }
