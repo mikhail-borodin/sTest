@@ -1,6 +1,6 @@
 package com.example.sber_test.controller;
 
-import com.example.sber_test.model.Transaction;
+import com.example.sber_test.domain.Transaction;
 import com.example.sber_test.repository.TransactionRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -16,15 +16,6 @@ public class GreetingController {
     @Autowired
     private TransactionRepository repository;
 
-//    @GetMapping("/greeting")
-//    public String greeting(
-//            @RequestParam(name="name", required=false, defaultValue="World") String name,
-//            Map<String, Object> model
-//    ) {
-//        model.put("name", name);
-//        return "greeting";
-//    }
-
     @GetMapping
     public String main(Map<String,Object> model){
         Iterable<Transaction> transactions = repository.findAll();
@@ -36,7 +27,7 @@ public class GreetingController {
     }
 
     @PostMapping
-    public String add(@RequestParam String sender, @RequestParam String recipient, @RequestParam String amount, Map<String,Object> model) {
+    public String add(@RequestParam String sender, @RequestParam String recipient, @RequestParam Double amount, Map<String,Object> model) {
 
         Transaction transaction = new Transaction(sender, recipient, amount);
         repository.save(transaction);
