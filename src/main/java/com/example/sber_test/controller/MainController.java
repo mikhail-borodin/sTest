@@ -9,10 +9,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.ResponseStatus;
+import org.springframework.web.bind.annotation.RestController;
 
 import javax.validation.Valid;
-import java.util.Arrays;
+import java.util.Collections;
 
 @RestController
 public class MainController {
@@ -43,6 +48,6 @@ public class MainController {
     @ExceptionHandler(Exception.class)
     @ResponseBody
     public ResponseDto BadRequestHandler() {
-        return new ResponseDto("Error", Arrays.asList("bad request"));
+        return new ResponseDto("Error", Collections.singletonList("bad request"));
     }
 }
