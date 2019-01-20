@@ -12,15 +12,37 @@
 java -jar sber_test.jar
 ```
 
-### Prerequisites
+## Список операций
 
-What things you need to install the software and how to install them
+#### Оформить перевод
+Для оформления перевода необходимо отправить POST-запрос на адрес http://localhost:9872/newtransaction с телом запроса:
+
+```
+<transaction>
+    <sender>номер карты отправителя</sender>
+    <recipient>номер карты получателя</recipient>
+    <amount>сумма перевода</amount>
+</transaction>
+```
+
+#### Получить список отправленных переводов
+Для получения списка отправленных переводов необходимо отправить POST-запрос на адрес http://localhost:9872/getbysender с телом запроса:
 
 ```
 <request>
-    <content>{номер карты отправителя}</content>
+    <content>номер карты отправителя</content>
 </request>
 ```
 
-### Installing
+#### Получить список полученных переводов
+Для получения списка полученных переводов необходимо отправить POST-запрос на адрес http://localhost:9872/getbyrecipient с телом запроса:
+
+```
+<request>
+    <content>номер карты получателя</content>
+</request>
+```
+
+## Дополнительная информация
+* Стек технологий: SpringWeb, SpringData, Hibernate, H2.
 

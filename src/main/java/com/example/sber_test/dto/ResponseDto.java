@@ -5,23 +5,22 @@ import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty;
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlRootElement;
 
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.List;
 
-@JacksonXmlRootElement(localName = "Response")
-public class Response implements Serializable {
+@JacksonXmlRootElement(localName = "ResponseDto")
+public class ResponseDto implements Serializable {
     private static final long serialVersionUID = 14L;
 
     @JacksonXmlProperty
     private String message;
 
     @JacksonXmlProperty(localName = "error")
-    private List<String> errors = new ArrayList<>();
+    private List<String> errors;
 
-    public Response() {
+    public ResponseDto() {
     }
 
-    public Response(String message, List<String> errors) {
+    public ResponseDto(String message, List<String> errors) {
         this.message = message;
         this.errors = errors;
     }

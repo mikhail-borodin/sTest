@@ -6,7 +6,7 @@ import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlRootElement;
 import java.io.Serializable;
 
 @JacksonXmlRootElement(localName = "request")
-public class Request implements Serializable {
+public class RequestDto implements Serializable {
     private static final long serialVersionUID = 13L;
     @JacksonXmlProperty
     private String content;
@@ -21,7 +21,7 @@ public class Request implements Serializable {
 
     @Override
     public String toString() {
-        return "Request{" +
+        return "RequestDto{" +
                 "content='" + content + '\'' +
                 '}';
     }

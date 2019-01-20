@@ -5,7 +5,6 @@ import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty;
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlRootElement;
 
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.List;
 
 @JacksonXmlRootElement(localName = "transactions")
@@ -15,7 +14,7 @@ public class TransactionsDto implements Serializable {
 
     @JacksonXmlProperty(localName = "transaction")
     @JacksonXmlElementWrapper(useWrapping = false)
-    private List<TransactionDto> transactions = new ArrayList<>();
+    private List<TransactionDto> transactions;
 
     public TransactionsDto() {
     }

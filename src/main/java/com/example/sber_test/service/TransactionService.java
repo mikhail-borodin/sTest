@@ -1,8 +1,8 @@
 package com.example.sber_test.service;
 
 import com.example.sber_test.domain.Transaction;
-import com.example.sber_test.dto.Request;
-import com.example.sber_test.dto.Response;
+import com.example.sber_test.dto.RequestDto;
+import com.example.sber_test.dto.ResponseDto;
 import com.example.sber_test.dto.TransactionDto;
 import com.example.sber_test.dto.TransactionsDto;
 import com.example.sber_test.repository.TransactionRepository;
@@ -13,24 +13,29 @@ import org.springframework.validation.FieldError;
 
 import javax.transaction.Transactional;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.logging.Logger;
 
 @Service
 public class TransactionService implements ITransactionService {
 
-    Logger log = Logger.getLogger(TransactionService.class.getName());
+    private static final Logger log = Logger.getLogger(TransactionService.class.getName());
+
+    private final TransactionRepository repository;
 
     @Autowired
-    private TransactionRepository repository;
+    public TransactionService(TransactionRepository repository) {
+        this.repository = repository;
+    }
 
     @Override
     @Transactional
-    public Response newTransaction(TransactionDto transactionDto, BindingResult bindingResult) {
+    public ResponseDto newTransaction(TransactionDto transactionDto, BindingResult bindingResult) {
         log.info("Try add new transaction = " + transactionDto);
 
         String message;
-        List<String> errors = new ArrayList<>();
+        List<String> errors = Collections.emptyList();
 
         if (!bindingResult.hasErrors()) {
             message = "Successfully";
@@ -45,21 +50,21 @@ public class TransactionService implements ITransactionService {
             log.info("Error adding transaction " + transactionDto);
         }
 
-        return new Response(message, errors);
+        return new ResponseDto(message, errors);
     }
 
     @Override
-    public TransactionsDto findBySender(Request request) {
-        log.info("Request findBySender received = " + request);
+    public TransactionsDto findBySender(RequestDto requestDto) {
+        log.info("RequestDto findBySender received = " + requestDto);
 
-        return castToTransactionsDto(repository.findBySender(request.getContent()));
+        return castToTransactionsDto(repository.findBySender(requestDto.getContent()));
     }
 
     @Override
-    public TransactionsDto findByRecipient(Request request) {
-        log.info("Request findByRecipient received = " + request);
+    public TransactionsDto findByRecipient(RequestDto requestDto) {
+        log.info("RequestDto findByRecipient received = " + requestDto);
 
-        return castToTransactionsDto(repository.findByRecipient(request.getContent()));
+        return castToTransactionsDto(repository.findByRecipient(requestDto.getContent()));
     }
 
     private static List<String> getMessagesErrors(BindingResult bindingResult) {
