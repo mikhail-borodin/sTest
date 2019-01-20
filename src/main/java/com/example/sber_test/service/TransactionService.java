@@ -27,7 +27,7 @@ public class TransactionService implements ITransactionService {
     @Override
     @Transactional
     public Response newTransaction(TransactionDto transactionDto, BindingResult bindingResult) {
-        log.info("newTransaction = " + transactionDto);
+        log.info("Try add new transaction = " + transactionDto);
 
         String message;
         List<String> errors = new ArrayList<>();
@@ -38,9 +38,11 @@ public class TransactionService implements ITransactionService {
                     transactionDto.getRecipient(), transactionDto.getAmount());
 
             repository.save(transaction);
+            log.info("Transaction " + transactionDto + " added successfully");
         } else {
             errors = getMessagesErrors(bindingResult);
             message = "Error";
+            log.info("Error adding transaction " + transactionDto);
         }
 
         return new Response(message, errors);
@@ -48,14 +50,14 @@ public class TransactionService implements ITransactionService {
 
     @Override
     public TransactionsDto findBySender(Request request) {
-        log.info("findBySender = " + request);
+        log.info("Request findBySender received = " + request);
 
         return castToTransactionsDto(repository.findBySender(request.getContent()));
     }
 
     @Override
     public TransactionsDto findByRecipient(Request request) {
-        log.info("findByRecipient = " + request);
+        log.info("Request findByRecipient received = " + request);
 
         return castToTransactionsDto(repository.findByRecipient(request.getContent()));
     }

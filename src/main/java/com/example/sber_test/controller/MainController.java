@@ -6,14 +6,13 @@ import com.example.sber_test.dto.TransactionDto;
 import com.example.sber_test.dto.TransactionsDto;
 import com.example.sber_test.service.ITransactionService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.Arrays;
 
 @RestController
 public class MainController {
@@ -35,4 +34,12 @@ public class MainController {
     public Response newTransaction(@Valid @RequestBody TransactionDto transaction, BindingResult bindingResult) {
         return transactionService.newTransaction(transaction, bindingResult);
     }
+
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    @ExceptionHandler(Exception.class)
+    @ResponseBody
+    public Response BadRequestHandler() {
+        return new Response("Error", Arrays.asList("bad request"));
+    }
+
 }
